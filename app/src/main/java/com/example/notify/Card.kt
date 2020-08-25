@@ -1,16 +1,18 @@
 package com.example.notify
 
 import android.content.Context
+import android.graphics.Color
 import android.util.DisplayMetrics
 import android.widget.TextView
 import com.google.android.material.card.MaterialCardView
 import kotlin.math.roundToInt
 
 
-class Card(private val context: Context, private val displayMetrics: DisplayMetrics, val id: Int) {
+class Card(private val context: Context, private val displayMetrics: DisplayMetrics) {
 
     val card: MaterialCardView = MaterialCardView(context)
 
+    //    val img:Image=
     init {
 
         create()
@@ -20,15 +22,16 @@ class Card(private val context: Context, private val displayMetrics: DisplayMetr
 
 
 //        card.setCardBackgroundColor(Color.CYAN)
+
         card.radius = 35F
         val tex = TextView(context)
 
 
-        card.id = id
         tex.text = card.id.toString()
         card.addView(tex)
-        card.setPadding(0, 100, 0, 0)
-//        card.strokeColor = # b5b5b5
+
+        card.strokeColor = Color.GRAY
+        card.cardElevation = 0F
         card.strokeWidth = dP(2)
     }
 

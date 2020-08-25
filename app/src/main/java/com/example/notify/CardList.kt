@@ -20,25 +20,27 @@ class CardList(
 
         val height = dP(92)
         val width = ((displayMetrics.widthPixels) * 0.9).toInt()
+
         val params = ConstraintLayout.LayoutParams(
             width, height
         )
-        val pad = dP(20)
         params.leftToRight = R.id.clay1
         params.rightToLeft = R.id.clay1
 
+        val pad = dP(20)
         if (list.isEmpty()) {
             params.topToTop = R.id.clay1
-            params.topMargin = dP(pad)
+            params.topMargin = 3 * pad
         } else {
             params.topToBottom = list.last().card.id
-            params.topMargin = dP(pad)
+            params.topMargin = pad
 
         }
-        list.add(Card(context, displayMetrics, list.size + 1))
 
+        list.add(Card(context, displayMetrics))
+        list.last().card.id = list.size + 1;
         list.last().card.layoutParams = params
-        list.last().card
+
         root.addView(list.last().card)
     }
 
