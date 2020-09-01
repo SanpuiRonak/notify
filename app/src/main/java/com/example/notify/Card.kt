@@ -2,41 +2,39 @@ package com.example.notify
 
 import android.content.Context
 import android.graphics.Color
-import android.util.DisplayMetrics
-import android.widget.TextView
+import android.widget.ImageView
+import androidx.constraintlayout.widget.ConstraintLayout
 import com.google.android.material.card.MaterialCardView
-import kotlin.math.roundToInt
 
 
-class Card(private val context: Context, private val displayMetrics: DisplayMetrics) {
+class Card(private val context: Context) {
 
     val card: MaterialCardView = MaterialCardView(context)
+    val logo: ImageView = ImageView(context)
 
-    //    val img:Image=
     init {
 
         create()
+        setLogo()
     }
 
     private fun create() {
 
-
-//        card.setCardBackgroundColor(Color.CYAN)
-
-        card.radius = 35F
-        val tex = TextView(context)
-
-
-        tex.text = card.id.toString()
-        card.addView(tex)
-
+        card.radius = 45F
         card.strokeColor = Color.GRAY
         card.cardElevation = 0F
-        card.strokeWidth = dP(2)
+        card.strokeWidth = Convert.toDp(2)
+        card.setPadding(0, 0, 0, 0)
     }
 
-    private fun dP(px: Int): Int {
-        val displayMetrics: DisplayMetrics = displayMetrics
-        return (px * (displayMetrics.xdpi / DisplayMetrics.DENSITY_DEFAULT)).roundToInt()
+    private fun setLogo() {
+        logo.setImageResource(R.drawable.codeforces)
+
+        val imgparam = ConstraintLayout.LayoutParams(Convert.toDp(92), Convert.toDp(92))
+        imgparam.leftToLeft = card.id
+        logo.layoutParams = imgparam
+        card.addView(logo)
     }
+
+
 }
